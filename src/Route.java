@@ -14,7 +14,9 @@ public class Route {
         return 0.0;
     }
 
-    public double computeHaversineDistance() {
+
+    // TODO move function into a final class ---> Calculate Distance
+    public double computeHaversineDistance(Coordinate point1, Coordinate point2) {
         //TODO implement the haverstine Distance calculation.
         return 0.0;
     }
