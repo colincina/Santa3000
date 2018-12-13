@@ -5,31 +5,21 @@ import java.util.Random;
 public class CalculateDistance {
 
     // adjacencyMatrix stores distances between Gift id x id
-    private double[][] adjacencyMatrix = new double[1000][100000];
-    private FileIO io;
 
-    public CalculateDistance() {
-        io = new FileIO();
-        // CalculateAdjacencyMatrix();
-    }
-
-    public double[][] GetAdjacencyMatrix(){
-        return adjacencyMatrix;
-    }
-
-    private void CalculateAdjacencyMatrix() {
-        io.ReadDataFromCSV();
-        List<Gift> gifts = io.GetGifts();
+    public static void CalculateAdjacencyMatrix() {
+        float[][] adjacencyMatrix = new float[100000][100000];
+        FileIO.ReadDataFromCSV();
+        List<Gift> gifts = StoresGift.GetGifts();
         for (int i = 0; i < 100000; i++) {
             for (int j = 0; j < 100000; j++) {
-                double distance = CalcHaversineDistance(gifts.get(i).getDestination(),gifts.get(j).getDestination());
+                float distance = (float)CalcHaversineDistance(gifts.get(i).getDestination(),gifts.get(j).getDestination());
                 adjacencyMatrix[i][j] = distance;
             }
 
         }
     }
 
-    private double CalcHaversineDistance(Coordinate point1, Coordinate point2) {
+    public static double CalcHaversineDistance(Coordinate point1, Coordinate point2) {
     	double R = 6371.0088; // Source value: 6372.8, where does this value come from? exchanged with mean radius from wikipedia.org // Radius in kilometers
     	double lat1 = point1.getLatitude();
     	double lon1 = point1.getLongitude();
