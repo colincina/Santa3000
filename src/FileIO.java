@@ -6,19 +6,13 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FileIO {
+public class FileIO {
 
-    private String CSVPath = ".\\Data\\gifts.csv";
-    private String path = ".\\Data\\Distances.txt";
-    List<Gift> Gifts;
-    public FileIO(){
-    }
+    public static String CSVPath = ".\\Data\\gifts.csv";
+    public static String path = ".\\Data\\Distances.txt";
 
-    public List<Gift> GetGifts(){
-        return this.Gifts;
-    }
 
-    public void ReadDataFromCSV(){
+    public static List<Gift> ReadDataFromCSV(){
         List<Gift> Gifts = new ArrayList<Gift>();
         BufferedReader br = null;
         String line = "";
@@ -55,12 +49,12 @@ public final class FileIO {
                 }
             }
         }
-        this.Gifts =  Gifts;
+        return Gifts;
     }
 
 
 // S
-    public Boolean WriteToTextFile(Double[][] distances){
+    public static Boolean WriteToTextFile(Double[][] distances){
 
         try {
             Files.write(Paths.get("myfile.txt"), "the text".getBytes(), StandardOpenOption.APPEND);
