@@ -21,22 +21,19 @@ public class Route {
     	// Compute the full weight of the sleigh
     	weight = baseWeight; // Add weight of the sleigh
 
-
-		for ( int i = 0; i < size; i++) {
-			weight += StoresGift.GetWeight(giftIDs[j]); // Add weight of all gifts
-		}
-
-		// distance
 		for(int j = 0; j < giftIDs.length ; j++){
 			if(j == 0){
 				weight += StoresGift.GetDistance(giftIDs[0],northPole);
 				continue;
 			}
-			weight += StoresGift.GetDistance(giftIDs[j-1],giftIDs[j]);
+			weight += StoresGift.GetDistance(giftIDs[j-1],giftIDs[j])
 		}
+    	for ( int i = 0; i < size; i++) {
+    		weight = weight + getWeight(i); // Add weight of all gifts
+    	}
 
     	// Compute weariness from north pole to the first destination
-    	distance = StoresGift.GetDistance(giftIDs[0],northPole);
+    	distance = getDistance(northPole, gifts.get(0).getDestination());
     	weariness = distance * weight;
     	
     	// Compute weariness for all destinations
