@@ -24,6 +24,10 @@ public class Gift {
         return distance;
     }
 
+    public double GetDistance(Coordinate pCoord){
+        return CalcHaversineDistance(destination, pCoord);
+    }
+
     public void StoreNeighbor(int id, double distance){
         neighbors.put(id,distance);
     }

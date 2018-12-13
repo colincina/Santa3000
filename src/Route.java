@@ -20,12 +20,23 @@ public class Route {
     	
     	// Compute the full weight of the sleigh
     	weight = baseWeight; // Add weight of the sleigh
-    	for ( int i = 0; i < size; i++) { 
-    		weight = weight + getWeight(i); // Add weight of all gifts
-    	}
-    	
+
+
+		for ( int i = 0; i < size; i++) {
+			weight += StoresGift.GetWeight(giftIDs[j]); // Add weight of all gifts
+		}
+
+		// distance
+		for(int j = 0; j < giftIDs.length ; j++){
+			if(j == 0){
+				weight += StoresGift.GetDistance(giftIDs[0],northPole);
+				continue;
+			}
+			weight += StoresGift.GetDistance(giftIDs[j-1],giftIDs[j]);
+		}
+
     	// Compute weariness from north pole to the first destination
-    	distance = getDistance(northPole, gifts.get(0).getDestination());
+    	distance = StoresGift.GetDistance(giftIDs[0],northPole);
     	weariness = distance * weight;
     	
     	// Compute weariness for all destinations
@@ -41,34 +52,6 @@ public class Route {
     	weariness = weariness + (distance * weight);
     	
         return weariness;
-    }
-    
-	public double getDistance(Coordinate point1, Coordinate point2) {
-		double distance;
-		
-		// TODO get distance from adjacency matrix if available, otherwise compute haversine distance and add the value to the adjacency matrix
-		
-		distance = computeHaversineDistance(point1, point2);
-	    return distance;
-	}
-
-    // TODO move function into a final class ---> Calculate Distance
-    public double computeHaversineDistance(Coordinate point1, Coordinate point2) {
-    	double R = 6371.0088; // Source value: 6372.8, where does this value come from? exchanged with mean radius from wikipedia.org // Radius in kilometers
-    	double lat1 = point1.getLatitude();
-    	double lon1 = point1.getLongitude();
-    	double lat2 = point2.getLatitude();
-    	double lon2 = point2.getLongitude();
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLon = Math.toRadians(lon2 - lon1);
-        lat1 = Math.toRadians(lat1);
-        lat2 = Math.toRadians(lat2);
- 
-        double a = Math.pow(Math.sin(dLat / 2),2) + Math.pow(Math.sin(dLon / 2),2) * Math.cos(lat1) * Math.cos(lat2);
-        double c = 2 * Math.asin(Math.sqrt(a));
-        return R * c;
-        
-        // Source: http://rosettacode.org/wiki/Haversine_formula#Java
     }
 
     public List<Gift> getGifts() { return gifts; }
