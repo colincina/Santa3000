@@ -13,15 +13,15 @@ public class Gift {
         id = pID;
     }
 
-    public double GetDistance(int id){
-        double distance;
+    public double GetDistance(int target){
+        double distance = 0;
         distance = neighbors.get(id);
-        if(distance == Null){
-            Coordinate targett = StoresGift.
-            //distance =  CalcHaversineDistance(destination, Coordinate point2)
+        if(distance == 0){
+            Coordinate targetCoordinate = StoresGift.GetCoordinate(id);
+            distance =  CalcHaversineDistance(destination, targetCoordinate);
+            neighbors.put(target,distance);
         }
-
-        return neighbors.get(id);
+        return distance;
     }
 
     public void StoreNeighbor(int id, double distance){
@@ -35,7 +35,7 @@ public class Gift {
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public double CalcHaversineDistance(Coordinate point1, Coordinate point2) {
+    private double CalcHaversineDistance(Coordinate point1, Coordinate point2) {
         double R = 6371.0088; // Source value: 6372.8, where does this value come from? exchanged with mean radius from wikipedia.org // Radius in kilometers
         double lat1 = point1.getLatitude();
         double lon1 = point1.getLongitude();
