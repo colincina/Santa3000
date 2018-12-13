@@ -20,4 +20,5 @@ public class StoresGift {
     public static Coordinate GetDistance(int id, int target){
         return Gifts.get(id).getDestination();
     }
+
 }
