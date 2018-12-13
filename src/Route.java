@@ -1,11 +1,12 @@
 import java.util.List;
 
 public class Route {
-    private List<Gift> gifts;
+	private int routeId;
+    private List<Integer> gifts;
     private double distance;
     private double weariness;
 
-    public Route(List<Gift> pGifts) {
+    public Route(List<Integer> pGifts) {
         gifts = pGifts;
     }
 
@@ -42,10 +43,16 @@ public class Route {
         return weariness;
     }
 
-    public List<Gift> getGifts() { return gifts; }
-    public void setGifts(List<Gift> gifts) { this.gifts = gifts; }
+    public List<Integer> getGifts() { return gifts; }
+    public void setGifts(List<Integer> gifts) { this.gifts = gifts; }
     public double getDistance() { return distance; }
     public void setDistance(double distance) { this.distance = distance; }
     public double getWeariness() { return weariness; }
     public void setWeariness(double weariness) { this.weariness = weariness; }
+    public void setRouteId(int id){
+    	routeId = id;
+	}
+	public int getRouteId(){
+    	return this.routeId;
+	}
 }
