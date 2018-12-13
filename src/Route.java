@@ -1,4 +1,5 @@
 import java.util.List;
+import 
 
 public class Route {
     private List<Gift> gifts;
@@ -9,18 +10,18 @@ public class Route {
         gifts = pGifts;
     }
 
-    public double computeWeariness(List<Gift> gifts) {
+    public double computeWeariness(int[] giftIDs) {
     	Coordinate northPole = new Coordinate(90, 0);
     	double baseWeight = 10; // Temporary hardcoded, should come from the sleigh
     	double weight = 0.0;
     	double weariness = 0.0;
     	double distance;
-    	int size = gifts.size();
+    	int size = giftIDs.length;
     	
     	// Compute the full weight of the sleigh
     	weight = baseWeight; // Add weight of the sleigh
     	for ( int i = 0; i < size; i++) { 
-    		weight = weight + gifts.get(i).getWeight(); // Add weight of all gifts
+    		weight = weight + getWeight(i); // Add weight of all gifts
     	}
     	
     	// Compute weariness from north pole to the first destination
