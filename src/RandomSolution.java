@@ -8,9 +8,21 @@ public class RandomSolution {
         List<Integer> sortedGifIDs = new ArrayList<>();
 
         sortedGifIDs.addAll(StoresGift.sortByLongitudeAsc());
+        int id = 1;
+        int maxWeight = 1010;
 
+        // Create Routes until all gifts are assigned to a route
         while (sortedGiftIDs.size() = !0) {
-            solution.add(Route)
+            Route newRoute = new Route();
+            newRoute.setRouteId(id);
+
+            // Add gifts to the route until the max weight is reached
+            while (newRoute.getWeight() < maxWeight) {
+
+            }
+
+            solution.add(newRoute);
+            id = id+1;
         }
     }
 }
