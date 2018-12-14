@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Gift {
+public class Gift implements Serializable {
 
     private double weight;
     private Coordinate destination;

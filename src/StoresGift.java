@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -6,10 +7,16 @@ import java.util.List;
 public class StoresGift {
 
     public static List<Gift> Gifts = new ArrayList<Gift>();
-    public static void GetsList(){
-        Gifts = FileIO.ReadDataFromCSV();
-    }
 
+    public static void GetsList(){
+        File serialFile = new File(DeserializeAndSerialize.serializePath);
+        if(serialFile.exists()){
+            Gifts = DeserializeAndSerialize.DeserializeGifts();
+        }
+        else{
+            Gifts = FileIO.ReadDataFromCSV();
+        }
+    }
 
     public static double GetWeight(int id){
         return Gifts.get(id).getWeight();

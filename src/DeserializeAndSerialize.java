@@ -21,7 +21,7 @@ public class DeserializeAndSerialize {
             e.printStackTrace();
             return false;
         }
-        return false;
+        return true;
     }
 
     public static List<Gift> DeserializeGifts(){
