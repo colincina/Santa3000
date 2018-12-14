@@ -81,12 +81,14 @@ public class StoresGift {
         }
     }
 
+    public static void DeserializeGifts() {
+    }
+
     private static List<Gift> cloneGifts() {
             ArrayList<Gift> retval = new ArrayList<Gift>(Gifts.size());
             retval.addAll(Gifts);
             return retval;
     }
-
 }
 
 
