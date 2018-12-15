@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Route {
@@ -7,6 +8,7 @@ public class Route {
     private double weariness;
 
     public Route() {
+    	this.gifts = new ArrayList<>();
     }
 
     public double getWeight() {
@@ -44,8 +46,8 @@ public class Route {
     	}
     	
     	// Compute weariness from last destination back to the north pole
-		weight = weight - StoresGift.GetWeight(this.gifts.get(i-1)); // Remove the weight of the gift of the last destination, weight should now be equal the base weight
-		distance = StoresGift.GetDistance(this.gifts.get(i-1), northPole);
+		weight = weight - StoresGift.GetWeight(this.gifts.get(size-1)); // Remove the weight of the gift of the last destination, weight should now be equal the base weight
+		distance = StoresGift.GetDistance(this.gifts.get(size-1), northPole);
     	weariness = weariness + (distance * weight);
     	
         return weariness;

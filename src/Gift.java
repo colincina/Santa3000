@@ -12,15 +12,20 @@ public class Gift implements Serializable {
         weight = pWeight;
         destination = pDest;
         id = pID;
+        neighbors = new HashMap<>();
     }
 
     public double GetDistance(int target){
+        System.out.println("Get distance to id " + target);
         double distance = 0;
-        distance = neighbors.get(id);
-        if(distance == 0){
+        if(!neighbors.containsKey(id)) {
+            System.out.println("Distance not available, calc...");
             Coordinate targetCoordinate = StoresGift.GetCoordinate(id);
             distance =  CalcHaversineDistance(destination, targetCoordinate);
             neighbors.put(target,distance);
+        } else {
+            System.out.println("Distance already calculated, read.");
+            distance = neighbors.get(id);
         }
         return distance;
     }

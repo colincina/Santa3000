@@ -19,20 +19,20 @@ public class StoresGift {
     }
 
     public static double GetWeight(int id){
-        return Gifts.get(id).getWeight();
-    }
+        return Gifts.get(id-1).getWeight();
+    }// Subtracted 1 from id because gift id starts with 1
 
     public static Coordinate GetCoordinate(int id){
-        return Gifts.get(id).getDestination();
-    }
+        return Gifts.get(id-1).getDestination();
+    }// Subtracted 1 from id because gift id starts with 1
 
     public static double GetDistance(int id, int target){
-        return Gifts.get(id).GetDistance(target);
-    }
+        return Gifts.get(id-1).GetDistance(target);
+    }// Subtracted 1 from id because gift id starts with 1
 
     public static double GetDistance(int id, Coordinate pCoor) {
-        return Gifts.get(id).GetDistance(pCoor);
-    }
+        return Gifts.get(id-1).GetDistance(pCoor);
+    }// Subtracted 1 from id because gift id starts with 1
 
     /*
     Sorts the Gifts by Latitude in ascending order and returns a List of the sorted Gift IDs
