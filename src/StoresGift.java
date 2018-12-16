@@ -18,6 +18,10 @@ public class StoresGift {
         }
     }
 
+    public static Gift GetGiftFromID(int giftID) {
+        return Gifts.get(giftID);
+    }
+
     public static double GetWeight(int id){
         return Gifts.get(id-1).getWeight();
     }// Subtracted 1 from id because gift id starts with 1

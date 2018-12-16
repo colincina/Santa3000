@@ -33,6 +33,7 @@ public class Gift implements Serializable {
     public double GetDistance(Coordinate pCoord){
         return CalcHaversineDistance(destination, pCoord);
     }
+    public double GetDistance(Gift pGift) { return CalcHaversineDistance(destination, pGift.getDestination()); }
 
     public void StoreNeighbor(int id, double distance){
         neighbors.put(id,distance);
