@@ -25,7 +25,7 @@ public class AntColonyOptimization {
     private int         currentIndex;
     private int[]       bestTourOrder;
     private double      bestTourLength;
-    private Route       route;
+    private List<Integer>       route;
 
     /*---------------------------------------------------------*/
 
@@ -66,7 +66,7 @@ public class AntColonyOptimization {
 
     /*---------------------------------------------------------*/
 
-    public AntColonyOptimization(Route pTour) throws IOException {
+    public AntColonyOptimization(List<Integer> pTour) throws IOException {
         route = pTour;
         buildDistMatrix(pTour);
         numberOfCities = graph.length;
@@ -91,7 +91,7 @@ public class AntColonyOptimization {
     /**
      * Use this method to run the main logic
      */
-    public Route solve() {
+    public List<Integer> solve() {
         setupAnts();
         clearTrails();
         IntStream.range(0, maxIterations)
@@ -108,11 +108,10 @@ public class AntColonyOptimization {
          *tour given by the bestTourOrder array
          *The improved tour replaces the old one and the route is returned.*/
         List<Integer> tour = new ArrayList<>();
-        for(int i = 0; i < route.getGifts().size(); i++) {
-            tour.add(route.getGifts().get(bestTourOrder[i]));
+        for(int i = 0; i < route.size(); i++) {
+            tour.add(route.get(bestTourOrder[i]));
         }
-        route.setGifts(tour);
-        return route;
+        return tour;
     }
 
     /**
@@ -236,16 +235,15 @@ public class AntColonyOptimization {
                 });
     }
 
-    private void buildDistMatrix(Route pCities) {
-        List<Integer> gifts = pCities.getGifts();
-        int size = gifts.size();
+    private void buildDistMatrix(List<Integer> pCities) {
+        int size = pCities.size();
         graph = new double[size][size];
         for(int i = 0; i < size; i++)
         {
             for(int j = 0; j < size; j++) {
                 //Fixme checkout if this is correct
-                Gift g = StoresGift.GetGiftFromID(gifts.get(i));
-                graph[i][j] = g.GetDistance(gifts.get(j));
+                Gift g = StoresGift.GetGiftFromID(pCities.get(i));
+                graph[i][j] = g.GetDistance(pCities.get(j));
             }
         }
     }
