@@ -25,6 +25,7 @@ public class AntColonyOptimization {
     private int         currentIndex;
     private int[]       bestTourOrder;
     private double      bestTourLength;
+    private Route       route;
 
     /*---------------------------------------------------------*/
 
@@ -66,8 +67,8 @@ public class AntColonyOptimization {
     /*---------------------------------------------------------*/
 
     public AntColonyOptimization(Route pTour) throws IOException {
-        //graph = generateRandomMatrix(noOfCities);
-        buildDistMatrix(Route);
+        route = pTour;
+        buildDistMatrix(pTour);
         numberOfCities = graph.length;
         numberOfAnts = (int) (numberOfCities * antFactor);
         trails = new double[numberOfCities][numberOfCities];
@@ -90,7 +91,7 @@ public class AntColonyOptimization {
     /**
      * Use this method to run the main logic
      */
-    public int[] solve() {
+    public Route solve() {
         setupAnts();
         clearTrails();
         IntStream.range(0, maxIterations)
@@ -101,7 +102,17 @@ public class AntColonyOptimization {
                 });
         System.out.println("Best tour length: " + (bestTourLength - numberOfCities));
         //System.out.println("Best tour order: " + Arrays.toString(bestTourOrder));
-        return bestTourOrder.clone();
+
+        /*Replace the initial tour of the Route with the order optimized by the Ant Colony Algorithm
+         *For that a new list of Gift indexes is built and filled with the Gift IDs of the optimized
+         *tour given by the bestTourOrder array
+         *The improved tour replaces the old one and the route is returned.*/
+        List<Integer> tour = new ArrayList<>();
+        for(int i = 0; i < route.getGifts().size(); i++) {
+            tour.add(route.getGifts().get(bestTourOrder[i]));
+        }
+        route.setGifts(tour);
+        return route;
     }
 
     /**
