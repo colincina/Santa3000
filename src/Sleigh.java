@@ -12,6 +12,15 @@ public class Sleigh {
         ownWeight = pOwnWeight;
     }
 
+    public boolean isFull(){
+        if(maxWeight == ownWeight){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public int getMaxWeight() { return maxWeight; }
     public void setMaxWeight(int maxWeight) { this.maxWeight = maxWeight; }
     public int getOwnWeight() { return ownWeight; }

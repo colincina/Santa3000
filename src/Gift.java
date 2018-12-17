@@ -18,14 +18,14 @@ public class Gift implements Serializable {
     public double GetDistance(int target){
         System.out.println("Get distance to id " + target);
         double distance = 0;
-        if(!neighbors.containsKey(id)) {
+        if(!neighbors.containsKey(target)) {
             System.out.println("Distance not available, calc...");
             Coordinate targetCoordinate = StoresGift.GetCoordinate(id);
             distance =  CalcHaversineDistance(destination, targetCoordinate);
             neighbors.put(target,distance);
         } else {
             System.out.println("Distance already calculated, read.");
-            distance = neighbors.get(id);
+            distance = neighbors.get(target);
         }
         return distance;
     }

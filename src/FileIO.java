@@ -1,5 +1,5 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -10,6 +10,7 @@ public class FileIO {
 
     public static String CSVPath = ".\\Data\\gifts.csv";
     public static String path = ".\\Data\\Distances.txt";
+    public static String solutionPath =".\\Data\\Solution.csv";
 
 
     public static List<Gift> ReadDataFromCSV(){
@@ -50,6 +51,23 @@ public class FileIO {
             }
         }
         return Gifts;
+    }
+
+
+    public static void WriteSolution(List<Route> solution) throws IOException {
+        File f = new File(solutionPath);
+        if(f.exists()) {
+            f.delete();
+        }
+        FileWriter writer = new FileWriter(solutionPath);
+        writer.append("GiftId,TripId");
+        for (Route r: solution)
+        {
+            for(Integer i : r.getGifts())
+                writer.append(r.getRouteId()+","+i.toString()+"\n");
+        }
+        writer.flush();
+        writer.close();
     }
 
 
