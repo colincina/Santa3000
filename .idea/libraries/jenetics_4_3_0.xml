@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jenetics-4.3.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Jenetics-Build/jenetics/build/libs/jenetics-4.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
